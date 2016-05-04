@@ -83,6 +83,161 @@ class pos_functions{
     }
     return $data;
   }
+
+  public function addOrderTaker($name){
+    $link = $this->connect();
+    $query=sprintf("INSERT INTO ordertakers(name)
+                        VALUES('".mysqli_escape_string($link,$name)."')");
+    if ($result = mysqli_query( $link, $query )) {
+      $data = array("success"=>"true",
+                    "newId"=> $link->insert_id);
+    }else {
+      $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+  public function getOrderTakerDetails($id){
+    $link = $this->connect();
+    $id = mysqli_real_escape_string($link,$id);
+    $query = "SELECT id,
+                      name
+              FROM ordertakers
+              WHERE id = '".$id."'";
+    $result = mysqli_query ( $link, $query );
+    $data = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $data[] = $row;
+    }
+    return $data;
+  }
+  
+  public function deleteOrderTaker($id){
+    $link = $this->connect();
+    $query = "DELETE FROM ordertakers WHERE id='".mysqli_escape_string($link,$id)."'";
+    if($result = mysqli_query( $link, $query )){
+        //successful
+        $data = array("success"=>"true",
+                      "rowsAffected"=>mysqli_affected_rows($link));
+    } else {
+        //failed
+        $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+  
+  public function updateOrderTaker($id,$name){
+    $link = $this->connect();
+    $query=sprintf("UPDATE ordertakers 
+                    SET name = '".mysqli_escape_string($link,$name)."'
+                    WHERE id = '".mysqli_escape_string($link,$id)."'");
+    if ($result = mysqli_query( $link, $query )) {
+      $data = array("success"=>"true",
+                    "affectedRows"=> mysqli_affected_rows($link));
+    }else {
+      $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+  public function getOrderTakerList(){
+    $link = $this->connect();
+    $query = "SELECT id,
+                      name
+              FROM ordertakers";
+    $result = mysqli_query ( $link, $query );
+    $data = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $data[] = $row;
+    }
+    return $data;
+  }
+
+
+  public function addOrderItem($orderId, $foodId, $quantity, $srp){
+    $link = $this->connect();
+    $query=sprintf("INSERT INTO order_item(order_id,food_id,quantity,srp)
+                        VALUES('".mysqli_real_escape_string($link,$orderId)."','".mysqli_real_escape_string($link,$foodId)."','".mysqli_real_escape_string($link,$quantity)."','".mysqli_real_escape_string($link,$srp)."')");
+    if ($result = mysqli_query( $link, $query )) {
+      $data = array("success"=>"true",
+                    "newId"=> $link->insert_id);
+    }else {
+      $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+public function getOrderItemDetails($id){
+    $link = $this->connect();
+    $id = mysqli_real_escape_string($link,$id);
+    $query = "SELECT oi_id,
+                      order_id,food_id,quantity,srp
+              FROM order_item
+              WHERE oi_id = '".$id."'";
+    $result = mysqli_query ( $link, $query );
+    $data = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $data[] = $row;
+    }
+    return $data;
+  }
+
+  public function deleteOrderItem($id){
+    $link = $this->connect();
+    $query = "DELETE FROM order_item WHERE oi_id='".mysqli_escape_string($link,$id)."'";
+    if($result = mysqli_query( $link, $query )){
+        //successful
+        $data = array("success"=>"true",
+                      "rowsAffected"=>mysqli_affected_rows($link));
+    } else {
+        //failed
+        $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+  public function updateOrderItem($id,$orderId, $foodId, $quantity, $srp){
+    $link = $this->connect();
+    $query=sprintf("UPDATE order_item 
+                    SET order_id = '".mysqli_escape_string($link,$orderId)."',
+                      food_id = '".mysqli_escape_string($link,$foodId)."',
+                      quantity = '".mysqli_escape_string($link,$quantity)."',
+                      srp = '".mysqli_escape_string($link,$srp)."'
+                    WHERE oi_id = '".mysqli_escape_string($link,$id)."'");
+    if ($result = mysqli_query( $link, $query )) {
+      $data = array("success"=>"true",
+                    "affectedRows"=> mysqli_affected_rows($link));
+    }else {
+      $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+  public function getOrderItemList(){
+    $link = $this->connect();
+    $query = "SELECT oi_id,
+                      order_id,
+                      food_id,
+                      quantity,
+                      srp
+              FROM order_item";
+    $result = mysqli_query ( $link, $query );
+    $data = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $data[] = $row;
+    }
+    return $data;
+  }
   /***End of CRUD***/
   
 
