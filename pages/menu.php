@@ -25,6 +25,8 @@ session_start();
 
     <link rel="shortcut icon" href="../assets/images/favicon.ico">
 
+    <!-- main css-->
+     <link href="../assets/styles/main.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
       <script src="dist/js/vendor/html5shiv.js"></script>
@@ -46,7 +48,7 @@ session_start();
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
               <ul class="nav navbar-nav navbar-left">
-                <li><a href="menu.php">Menu</a></li>
+                <li><a href="#fakelink">Menu</a></li>
                 <li><a href="#fakelink">Orders</a></li>
                 <li><a href="#fakelink">Reports</a></li>
                </ul>
@@ -67,7 +69,47 @@ session_start();
     </div>
 
     <div class="jumbotron">
+        <h2 style="text-align:center;">Menu</h2>
+        <table id="menu-table">
+          <tr>
+            <td>
+                <img style=" margin: 15px 15px 15px 15px;" src="../assets/images/food1.jpg" alt="example-image" class="img-rounded img-responsive" height="100px" width="300px">      
+            </td>
+            <td>
+                <img style=" margin: 15px 15px 15px 15px;" src="../assets/images/food2.jpg" alt="example-image" class="img-rounded img-responsive" height="100px" width="300px">      
+            </td>
+            <td>
+                <img style=" margin: 15px 15px 15px 15px;" src="../assets/images/food3.jpg" alt="example-image" class="img-rounded img-responsive" height="100px" width="300px">      
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <img style=" margin: 15px 15px 15px 15px;" src="../assets/images/food4.jpg" alt="example-image" class="img-rounded img-responsive" height="100px" width="300px">      
+            </td>
+            <td>
+                <img style=" margin: 15px 15px 15px 15px;" src="../assets/images/food5.jpg" alt="example-image" class="img-rounded img-responsive" height="100px" width="300px">      
+            </td>
+            <td>
+                <img style=" margin: 15px 15px 15px 15px;" src="../assets/images/food6.jpg" alt="example-image" class="img-rounded img-responsive" height="100px" width="300px">      
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <img style=" margin: 15px 15px 15px 15px;" src="../assets/images/food1.jpg" alt="example-image" class="img-rounded img-responsive" height="100px" width="300px">      
+            </td>
+            <td>
+                <img style=" margin: 15px 15px 15px 15px;" src="../assets/images/food2.jpg" alt="example-image" class="img-rounded img-responsive" height="100px" width="300px">      
+            </td>
+            <td>
+                <img style=" margin: 15px 15px 15px 15px;" src="../assets/images/food3.jpg" alt="example-image" class="img-rounded img-responsive" height="100px" width="300px">      
+            </td>
+          </tr>
+        </table>
+        
        
+        <p>
+          <a class="btn btn-lg btn-primary" href="" role="button">View More &raquo;</a>
+        </p>
       </div>
     <!-- /#wrapper -->
 
