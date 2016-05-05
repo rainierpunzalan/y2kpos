@@ -238,6 +238,266 @@ public function getOrderItemDetails($id){
     }
     return $data;
   }
+
+  /* CRUD FOOD CATEGORY */
+  public function getFoodCategoryDetails($id){
+    $link = $this->connect();
+    $id = mysqli_real_escape_string($link,$id);
+    $query = "SELECT id,
+                      name
+              FROM food_category
+              WHERE id = '".$id."'";
+    $result = mysqli_query ( $link, $query );
+    $data = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $data[] = $row;
+    }
+    return $data;
+  }
+  public function getFoodCategoryList(){
+    $link = $this->connect();
+    $query = "SELECT id,
+                      name
+              FROM food_category";
+    $result = mysqli_query ( $link, $query );
+    $data = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $data[] = $row;
+    }
+    return $data;
+  }
+  public function addFoodCategory($name){
+    $link = $this->connect();
+    $query=sprintf("INSERT INTO food_category(name)
+                        VALUES('".mysqli_escape_string($link,$name)."')");
+    if ($result = mysqli_query( $link, $query )) {
+      $data = array("success"=>"true",
+                    "newId"=> $link->insert_id);
+    }else {
+      $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+  public function deleteFoodCategory($id){
+    $link = $this->connect();
+    $query = "DELETE FROM food_category WHERE id='".mysqli_escape_string($link,$id)."'";
+    if($result = mysqli_query( $link, $query )){
+        //successful
+        $data = array("success"=>"true",
+                      "rowsAffected"=>mysqli_affected_rows($link));
+    } else {
+        //failed
+        $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+  public function updateFoodCategory($id,$name){
+    $link = $this->connect();
+    $query=sprintf("UPDATE food_category 
+                    SET name = '".mysqli_escape_string($link,$name)."'
+                    WHERE id = '".mysqli_escape_string($link,$id)."'");
+    if ($result = mysqli_query( $link, $query )) {
+      $data = array("success"=>"true",
+                    "affectedRows"=> mysqli_affected_rows($link));
+    }else {
+      $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+/* END OF CRUD FOOD CATEGORY */
+  
+/* CRUD FOOD */
+
+  public function getFoodDetails($id){
+    $link = $this->connect();
+    $id = mysqli_real_escape_string($link,$id);
+    $query = "SELECT food_id,
+                      food_name,
+                      srp,
+                      food_category,
+                      available,
+                      active,
+                      picture
+              FROM food
+              WHERE food_id = '".$id."'";
+    $result = mysqli_query ( $link, $query );
+    $data = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $data[] = $row;
+    }
+    return $data;
+  }
+  public function getFoodList(){
+    $link = $this->connect();
+    $query = "SELECT food_id,
+                      food_name,
+                      srp,
+                      food_category,
+                      available,
+                      active,
+                      picture
+              FROM food";
+    $result = mysqli_query ( $link, $query );
+    $data = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $data[] = $row;
+    }
+    return $data;
+  }
+  public function addFood($name,$srp,$category,$available,$active,$picture){
+    $link = $this->connect();
+    $query=sprintf("INSERT INTO food(food_name,srp,food_category,available,active,picture)
+                        VALUES('".mysqli_escape_string($link,$name)."',
+                          '".mysqli_escape_string($link,$srp)."',
+                          '".mysqli_escape_string($link,$category)."',
+                          '".mysqli_escape_string($link,$available)."',
+                          '".mysqli_escape_string($link,$active)."',
+                          '".mysqli_escape_string($link,$picture)."')");
+    if ($result = mysqli_query( $link, $query )) {
+      $data = array("success"=>"true",
+                    "newId"=> $link->insert_id);
+    }else {
+      $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+  public function deleteFood($id){
+    $link = $this->connect();
+    $query = "DELETE FROM food WHERE food_id='".mysqli_escape_string($link,$id)."'";
+    if($result = mysqli_query( $link, $query )){
+        //successful
+        $data = array("success"=>"true",
+                      "rowsAffected"=>mysqli_affected_rows($link));
+    } else {
+        //failed
+        $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+  public function updateFood($id,$name,$srp,$category,$available,$active,$picture){
+    $link = $this->connect();
+    $query=sprintf("UPDATE food
+                    SET food_name = '".mysqli_escape_string($link,$name)."',
+                    srp = '".mysqli_escape_string($link,$srp)."',
+                    food_category = '".mysqli_escape_string($link,$category)."',
+                    available = '".mysqli_escape_string($link,$available)."',
+                    active = '".mysqli_escape_string($link,$active)."',
+                    picture = '".mysqli_escape_string($link,$picture)."'
+                    WHERE food_id = '".mysqli_escape_string($link,$id)."'");
+    if ($result = mysqli_query( $link, $query )) {
+      $data = array("success"=>"true",
+                    "affectedRows"=> mysqli_affected_rows($link));
+    }else {
+      $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+  /* END OF CRUD FOOD */
+
+  /* CRUD ORDER*/
+
+  public function getOrderDetails($id){
+    $link = $this->connect();
+    $id = mysqli_real_escape_string($link,$id);
+    $query = "SELECT order_id,
+                      transaction_date,
+                      order_status,
+                      ordertaker,
+                      istakeout
+              FROM orders
+              WHERE order_id = '".$id."'";
+    $result = mysqli_query ( $link, $query );
+    $data = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $data[] = $row;
+    }
+    return $data;
+  }
+  public function getOrderList(){
+    $link = $this->connect();
+    $query = "SELECT order_id,
+                      transaction_date,
+                      order_status,
+                      ordertaker,
+                      istakeout
+              FROM orders";
+    $result = mysqli_query ( $link, $query );
+    $data = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $data[] = $row;
+    }
+    return $data;
+  }
+  public function addOrder($date,$status,$ordertaker,$takeout,$tno){
+    $link = $this->connect();
+    $query=sprintf("INSERT INTO orders(transaction_date,order_status,ordertaker,istakeout)
+                        VALUES('".mysqli_escape_string($link,$date)."',
+                          '".mysqli_escape_string($link,$status)."',
+                          '".mysqli_escape_string($link,$ordertaker)."',
+                          '".mysqli_escape_string($link,$takeout)."',
+                          '".mysqli_escape_string($link,$tno)."')");
+    if ($result = mysqli_query( $link, $query )) {
+      $data = array("success"=>"true",
+                    "newId"=> $link->insert_id);
+    }else {
+      $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+  public function deleteOrder($id){
+    $link = $this->connect();
+    $query = "DELETE FROM orders WHERE order_id='".mysqli_escape_string($link,$id)."'";
+    if($result = mysqli_query( $link, $query )){
+        //successful
+        $data = array("success"=>"true",
+                      "rowsAffected"=>mysqli_affected_rows($link));
+    } else {
+        //failed
+        $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+  public function updateOrder($id,$date,$status,$ordertaker,$takeout,$tno){
+    $link = $this->connect();
+    $query=sprintf("UPDATE orders 
+                    SET transaction_date = '".mysqli_escape_string($link,$date)."',
+                    order_status = '".mysqli_escape_string($link,$status)."',
+                    ordertaker = '".mysqli_escape_string($link,$ordertaker)."',
+                    istakeout = '".mysqli_escape_string($link,$takeout)."',
+                    table_no = '".mysqli_escape_string($link,$tno)."'
+                    WHERE order_id = '".mysqli_escape_string($link,$id)."'");
+    if ($result = mysqli_query( $link, $query )) {
+      $data = array("success"=>"true",
+                    "affectedRows"=> mysqli_affected_rows($link));
+    }else {
+      $data = array("success"=>"false",
+                      "error"=>mysqli_error($link));
+    }
+    return $data;
+  }
+
+  /* END OF CRUD ORDER */
+
+
   /***End of CRUD***/
   
 
