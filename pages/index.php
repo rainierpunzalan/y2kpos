@@ -10,65 +10,12 @@ session_start();
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>POS</title>
-    <meta name="description" content="POS"/>
 
-    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
-
-    <!-- Loading Bootstrap -->
-    <link href="../assets/plugins/vendor/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Loading Flat UI -->
-    <link href="../assets/plugins/vendor/css/flat-ui.css" rel="stylesheet">
-    <!-- <link href="docs/assets/css/demo.css" rel="stylesheet"> -->
-
-    <link rel="shortcut icon" href="../assets/images/favicon.ico">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-      <script src="dist/js/vendor/html5shiv.js"></script>
-      <script src="dist/js/vendor/respond.min.js"></script>
-    <![endif]-->
-  </head>
+</head>
 
 <body>
 
-    <div class="container">
-    <div class="row demo-row">
-        <div class="">
-          <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-                <span class="sr-only">Toggle navigation</span>
-              </button>
-              <a class="navbar-brand" href="#">Store Name |</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse-01">
-              <ul class="nav navbar-nav navbar-left">
-                <li><a href="menu.php">Menu</a></li>
-                <li><a href="#fakelink">Orders</a></li>
-                <li><a href="#fakelink">Reports</a></li>
-               </ul>
-               <form class="navbar-right" action="#" role="search">
-                    <div class="">
-                        <a href="" class="btn btn-block btn-lg btn-danger"><span class="fui-power"></span>Log Out</a>
-                    </div>
-              </form>
-            </div><!-- /.navbar-collapse -->
-          </nav><!-- /navbar -->
-
-        </div>
-        
-    </div> <!-- /row -->
-
-     
-
-    </div>
-
-    <div class="jumbotron">
-       
-      </div>
+    
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -84,12 +31,7 @@ session_start();
     <!-- Custom Theme JavaScript -->
     <script src="../assets/plugins/sbadmin/dist/js/sb-admin-2.js"></script>
     <script src="../assets/plugins/sortable/js/sortable.min.js"></script>
-    <script src="../assets/plugins/vendor/jquery/jquery.min.js"></script>
-    <script src="../assets/plugins/vendor/jquery/video.js"></script>
-    <script src="../assets/plugins/vendor/jquery/flat-ui.min.js"></script>
-    <script>
-      videojs.options.flash.swf = "../assets/plugins/vendor/jquery/video-js.swf";
-    </script>
+
     <script>
         $.ajax({
           url: '../gateway/cashier.php?addCashier=1',
