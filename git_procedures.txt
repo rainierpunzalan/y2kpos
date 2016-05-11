@@ -1,0 +1,20 @@
+git procedures
+
+Before Starting to Work:
+
+git pull origin development -- this is to avoid conflicts
+
+
+
+After working:
+
+git pull origin development
+
+git status
+
+-- if there are new files to be added,
+	git add [file_to_be_added]
+
+git commit -m "[commit message]"
+
+git push origin development
