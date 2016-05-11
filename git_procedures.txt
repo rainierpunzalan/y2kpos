@@ -12,9 +12,7 @@ git pull origin development
 
 git status
 
--- if there are new files to be added,
-	git add [file_to_be_added]
 
-git commit -m "[commit message]"
+git commit -a -m "[commit message]"
 
 git push origin development
